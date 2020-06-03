@@ -17,7 +17,7 @@ class PatternCollection(models.Model):
     company = models.ForeignKey(PatternCompany, on_delete=models.CASCADE)
     description = models.TextField(blank=True)
     url = models.URLField(blank=True)
-    year_published = models.DateField(auto_now=False, auto_now_add=False, blank=True)
+    year_published = models.DateField(auto_now=False, auto_now_add=False, blank=True, null=True)
 
     def __str__(self):
         return f'{self.name}'
@@ -44,8 +44,8 @@ class PatternType(models.Model):
 class Pattern(models.Model):
     pattern_name = models.CharField(max_length=100)
     pattern_company = models.ForeignKey(PatternCompany, on_delete=models.CASCADE)
-    pattern_collection = models.ForeignKey(PatternCollection, blank=True, on_delete=models.CASCADE)
-    pattern_designer = models.ForeignKey(PatternDesigner, blank=True, on_delete=models.CASCADE)
+    pattern_collection = models.ForeignKey(PatternCollection, blank=True, null=True, on_delete=models.CASCADE)
+    pattern_designer = models.ForeignKey(PatternDesigner, blank=True, null=True, on_delete=models.CASCADE)
     images = models.ManyToManyField(UploadImage, blank=True)
     url = models.URLField(blank=True)
 
