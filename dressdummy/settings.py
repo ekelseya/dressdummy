@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_auth',
     # project apps
-    'frontend',
     'fabric',
     'patterns',
     'projects',
