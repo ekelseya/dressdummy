@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
 from rest_framework.routers import DefaultRouter
 
 from fabric.views import *
@@ -31,6 +32,8 @@ router.register(r'pattern/collections', PatternCollectionViewSet)
 router.register(r'pattern/designers', PatternDesignerViewSet)
 router.register(r'pattern/types', PatternTypeViewSet)
 router.register(r'patterns', PatternViewSet)
+router.register(r'patterns/sizes', PatternSizeViewSet)
+router.register(r'pattern/measurements', PatternFinishedMeasurementViewSet)
 router.register(r'fabric/types', FabricTypeViewSet)
 router.register(r'fabric/uses', RecommendedUsesViewSet)
 router.register(r'fabric/elements', DesignElementsViewSet)
@@ -46,7 +49,7 @@ router.register(r'stash/pattern', PatternStashViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path(r'auth/', include('rest_auth.urls')),
+    path(r'^', TemplateView.as_view(template_name="index.html")),
 ]
 
 if settings.DEBUG:

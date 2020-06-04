@@ -25,3 +25,13 @@ class PatternTypeViewSet(viewsets.ModelViewSet):
 class PatternViewSet(viewsets.ModelViewSet):
     queryset = Pattern.objects.all()
     serializer_class = PatternSerializer
+
+
+class PatternSizeViewSet(viewsets.ModelViewSet):
+    queryset = PatternSize.objects.all()
+    serializer_class = PatternSizeSerializer
+
+
+class PatternFinishedMeasurementViewSet(viewsets.ModelViewSet):
+    queryset = PatternFinishedMeasurement.objects.all()
+    serializer_class = PatternFinishedMeasurementSerializer

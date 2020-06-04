@@ -36,3 +36,15 @@ class PatternViewSerializer(serializers.ModelSerializer):
     class Meta:
         model = PatternView
         fields = '__all__'
+
+
+class PatternSizeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PatternSize
+        fields = '__all__'
+
+
+class PatternFinishedMeasurementSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PatternFinishedMeasurement
+        fields = '__all__'
