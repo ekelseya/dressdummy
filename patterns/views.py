@@ -32,6 +32,6 @@ class PatternSizeViewSet(viewsets.ModelViewSet):
     serializer_class = PatternSizeSerializer
 
 
-class PatternFinishedMeasurement(viewsets.ModelViewSet):
+class PatternFinishedMeasurementViewSet(viewsets.ModelViewSet):
     queryset = PatternFinishedMeasurement.objects.all()
     serializer_class = PatternFinishedMeasurementSerializer
