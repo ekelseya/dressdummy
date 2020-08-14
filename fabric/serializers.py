@@ -8,6 +8,12 @@ class FabricTypeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class FabricContentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FabricContent
+        fields = '__all__'
+
+
 class RecommendedUseSerializer(serializers.ModelSerializer):
     class Meta:
         model = RecommendedUse
