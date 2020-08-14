@@ -66,15 +66,15 @@ class Designer(models.Model):
 
 class Fabric(models.Model):
     name = models.CharField(max_length=100)
-    image = models.ManyToManyField('upload_images.UploadImage', blank=True, null=True)
+    image = models.ManyToManyField('upload_images.UploadImage', blank=True)
     brand = models.ForeignKey(FabricBrand, blank=True, null=True, on_delete=models.CASCADE)
     designer = models.ForeignKey(Designer, blank=True, null=True, on_delete=models.CASCADE)
     fabric_collection = models.ForeignKey(FabricCollection, blank=True, null=True, on_delete=models.CASCADE)
     fabric_type = models.ForeignKey(FabricType, blank=True, null=True, on_delete=models.CASCADE)
     fabric_content = models.ForeignKey(FabricContent, blank=True, null=True, on_delete=models.CASCADE)
-    recommended_uses = models.ManyToManyField(RecommendedUse, blank=True, null=True)
-    design_elements = models.ManyToManyField(DesignElement, blank=True, null=True)
-    color_family = models.ManyToManyField(ColorFamily, blank=True, null=True)
+    recommended_uses = models.ManyToManyField(RecommendedUse, blank=True)
+    design_elements = models.ManyToManyField(DesignElement, blank=True)
+    color_family = models.ManyToManyField(ColorFamily, blank=True)
 
     def __str__(self):
         return f'{self.name}'
