@@ -6,6 +6,7 @@ from patterns.models import PatternView
 from stash.models import PatternStash, FabricStash
 from upload_images.models import UploadImage
 
+
 # TODO: info for date input: https://stackoverflow.com/questions/50660580/i-can-not-change-the-date-format-in-django-drf
 class Project(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
