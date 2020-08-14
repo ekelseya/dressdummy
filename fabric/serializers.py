@@ -8,15 +8,15 @@ class FabricTypeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class RecommendedUsesSerializer(serializers.ModelSerializer):
+class RecommendedUseSerializer(serializers.ModelSerializer):
     class Meta:
-        model = RecommendedUses
+        model = RecommendedUse
         fields = '__all__'
 
 
-class DesignElementsSerializer(serializers.ModelSerializer):
+class DesignElementSerializer(serializers.ModelSerializer):
     class Meta:
-        model = DesignElements
+        model = DesignElement
         fields = '__all__'
 
 

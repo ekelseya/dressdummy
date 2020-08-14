@@ -1,42 +1,33 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import User, UserProfile
+from rest_framework.authtoken.models import Token
 
 
-class UserProfileSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
+    """
+    A simple serializer class to render user data as JSON objects
 
+    Methods
+    -------
+    create(validated_data)
+        overrides the default create method
+    """
     class Meta:
-        model = UserProfile
-        fields = ('name', 'location', 'about', 'avatar')
-
-
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    profile = UserProfileSerializer(required=True)
-
-    class Meta:
+        """
+        Automatically generates a set of fields based on the User model
+        """
         model = User
-        fields = ('url', 'email', 'first_name', 'last_name', 'password', 'profile')
-        extra_kwargs = {'password': {'write_only': True}}
+        fields = ('id', 'username', 'password')
+        extra_kwargs = {'password': {'write_only': True, 'required': True}}
 
     def create(self, validated_data):
-        profile_data = validated_data.pop('profile')
-        password = validated_data.pop('password')
-        user = User(**validated_data)
-        user.set_password(password)
-        user.save()
-        UserProfile.objects.create(user=user, **profile_data)
+        """
+        Overrides the default create method to create an authentication token
+        when a user is created.
+        :param validated_data: the validated username and password
+        :return: user
+            returns the new user instance
+        """
+        user = User.objects.create_user(**validated_data)
+        Token.objects.create(user=user)
         return user
-
-    def update(self, instance, validated_data):
-        profile_data = validated_data.pop('profile')
-        profile = instance.profile
-
-        instance.email = validated_data.get('email', instance.email)
-        instance.save()
-
-        profile.name = profile_data.get('name', profile.name)
-        profile.location = profile_data.get('location', profile.location)
-        profile.about = profile_data.get('about', profile.about)
-        profile.avatar = profile_data.get('avatar', profile.avatar)
-        profile.save()
-
-        return instance

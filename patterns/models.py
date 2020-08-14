@@ -62,12 +62,18 @@ class PatternView(models.Model):
     notions = models.TextField(blank=True)
 
     def __str__(self):
-        return f'{self.view}'
+        return f'{self.pattern_name} View {self.view}'
 
 
 class PatternSize(models.Model):
     pattern_view = models.ForeignKey(PatternView, on_delete=models.CASCADE)
     size = models.CharField(max_length=10)
+    main_fabric_45 = models.CharField(max_length=10, blank=True, null=True)
+    main_fabric_60 = models.CharField(max_length=10, blank=True, null=True)
+    accent_fabric_45 = models.CharField(max_length=10, blank=True, null=True)
+    accent_fabric_60 = models.CharField(max_length=10, blank=True, null=True)
+    interfacing = models.CharField(max_length=10, blank=True, null=True)
+    lining = models.CharField(max_length=10, blank=True, null=True)
 
     def __str__(self):
         return f'{self.size}'
@@ -75,9 +81,11 @@ class PatternSize(models.Model):
 
 class PatternFinishedMeasurement(models.Model):
     pattern_size = models.ForeignKey(PatternSize, on_delete=models.CASCADE)
-    bust = models.CharField(max_length=10)
-    waist = models.CharField(max_length=10)
-    hip = models.CharField(max_length=10)
+    bust = models.CharField(max_length=10, default='N/A')
+    waist = models.CharField(max_length=10, default='N/A')
+    hip = models.CharField(max_length=10, default='N/A')
+    back_length = models.CharField(max_length=10, default='N/A')
+    inseam = models.CharField(max_length=10, default='N/A')
 
     def __str__(self):
         return f'Bust: {self.bust} Waist: {self.waist} Hip: {self.hip}'

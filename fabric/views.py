@@ -7,14 +7,14 @@ class FabricTypeViewSet(viewsets.ModelViewSet):
     serializer_class = FabricTypeSerializer
 
 
-class RecommendedUsesViewSet(viewsets.ModelViewSet):
-    queryset = RecommendedUses.objects.all()
-    serializer_class = RecommendedUsesSerializer
+class RecommendedUseViewSet(viewsets.ModelViewSet):
+    queryset = RecommendedUse.objects.all()
+    serializer_class = RecommendedUseSerializer
 
 
-class DesignElementsViewSet(viewsets.ModelViewSet):
-    queryset = DesignElements.objects.all()
-    serializer_class = DesignElementsSerializer
+class DesignElementViewSet(viewsets.ModelViewSet):
+    queryset = DesignElement.objects.all()
+    serializer_class = DesignElementSerializer
 
 
 class ColorFamilyViewSet(viewsets.ModelViewSet):
