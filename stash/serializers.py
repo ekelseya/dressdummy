@@ -6,11 +6,11 @@ class PatternStashSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PatternStash
-        fields = ['id', 'user', 'pattern', 'notes']
+        fields = '__all__'
 
 
 class FabricStashSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = FabricStash
-        fields = ('id', 'user', 'fabric', 'notes')
+        fields = '__all__'
