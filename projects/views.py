@@ -6,10 +6,10 @@ from .permissions import IsOwnerOrReadOnly
 from .serializers import ProjectSerializer
 
 
-class PatternStashViewSet(viewsets.ModelViewSet):
+class ProjectViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
     serializer_class = ProjectSerializer
-    queryset = Project.objects.all()
+    queryset = Project.objects.all().order_by('pattern', 'user')
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
